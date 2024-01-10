@@ -38,7 +38,7 @@ while (!fileReaded) {
 
 int totalSteps = companyList.Count();
 
-await UpdateCompanies(companyList.Take(300).ToList(), filePath);
+await UpdateCompanies(companyList.ToList(), filePath);
 
 Console.WriteLine(" ");
 
@@ -108,6 +108,7 @@ async Task UpdateCompanies(List<CompanyModel> companyList, string filePath, int 
         }
         catch (Exception ex) {
             DrawProgressBar(progressPercentage, 50, "Bir hata oluştu yeniden deneniyor");
+            Console.WriteLine(ex.Message);
             WaitForInternetConnection();
             Thread.Sleep(2000);
         }
